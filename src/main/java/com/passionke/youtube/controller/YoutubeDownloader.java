@@ -3,6 +3,7 @@ package com.passionke.youtube.controller;
 import com.passionke.youtube.config.CommanderConfig;
 import com.passionke.youtube.core.ShellRunner;
 import com.passionke.youtube.domain.JsonResult;
+import com.passionke.youtube.util.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,11 +26,12 @@ public class YoutubeDownloader {
 
     @Autowired
     private CommanderConfig commanderConfig;
+
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public JsonResult<String> download(@RequestBody String youtubeURL) throws UnsupportedEncodingException {
         String url = URLDecoder.decode(youtubeURL, "utf-8");
         log.info("recive request to download youtube URL {}", url);
-        String command = commanderConfig.getTemplate().trim() + " " + url;
+        String command = "sh " + Utils.getApplicationPath() + "downloader.sh " + url;
         log.info("command {}", command);
         try {
             ShellRunner.run(command);
