@@ -16,7 +16,6 @@ public class ShellRunner {
 
     public static int run(String command) throws IOException, InterruptedException {
         Process process = Runtime.getRuntime().exec(command);
-        process.
         BufferedReader input = new BufferedReader(
                 new InputStreamReader(
                         new SequenceInputStream(process.getErrorStream(),
