@@ -1,0 +1,10 @@
+.classpath
+.project
+node_modules/
+.DS_Store
+start_server.sh
+*.map
+.idea
+*.iml
+target/
+logs/
