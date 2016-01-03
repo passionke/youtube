@@ -3,6 +3,7 @@ package com.passionke.youtube;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.ImportResource;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.ImportResource;
  * wanliang@wacai.com
  */
 @EnableAutoConfiguration
+@EnableConfigurationProperties
 @SpringBootApplication
 @ImportResource("classpath*:/spring/**/*.xml")
 public class SpringBootMain {
