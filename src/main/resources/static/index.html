@@ -1,0 +1,15 @@
+<script src="assets/jquery-1.11.3.min.js"></script>
+<label for="youtube"></label><input id="youtube"/>
+<br/>
+<button id="submit">button</button>
+<script>
+    $(document).ready(function () {
+        $("#submit").on("click", function () {
+            var value = $("#youtube").val()
+            $.post("/youtube/",
+                    value, function (data) {
+                        console.log(data)
+                    })
+        })
+    })
+</script>
