@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 
 /**
  * Created by passionke on 16/1/3.
@@ -20,9 +22,10 @@ import java.io.IOException;
 public class YoutubeDownloader {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public JsonResult<String> download(@RequestBody String youtubeURL) {
-        log.info("recive request to download youtube URL {}", youtubeURL);
-        String command = "/data/program/youtube-dl -o '/root/youtube/%(title)s.%(ext)s' --exec 'bypy upload ' " + youtubeURL;
+    public JsonResult<String> download(@RequestBody String youtubeURL) throws UnsupportedEncodingException {
+        String url = URLDecoder.decode(youtubeURL, "utf-8");
+        log.info("recive request to download youtube URL {}", url);
+        String command = "/data/program/youtube-dl -o '/root/youtube/%(title)s.%(ext)s' --exec 'bypy upload ' " + url;
         log.info("command {}", command);
         try {
             ShellRunner.run(command);
