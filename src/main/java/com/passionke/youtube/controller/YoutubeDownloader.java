@@ -25,7 +25,7 @@ public class YoutubeDownloader {
     public JsonResult<String> download(@RequestBody String youtubeURL) throws UnsupportedEncodingException {
         String url = URLDecoder.decode(youtubeURL, "utf-8");
         log.info("recive request to download youtube URL {}", url);
-        String command = "/data/program/youtube-dl -o '/root/youtube/%(title)s.%(ext)s' --exec 'bypy upload ' " + url;
+        String command = "/data/program/youtube-dl -o '/root/youtube/%(title)s.%(ext)s' --exec '/usr/bin/bypy upload ' " + url;
         log.info("command {}", command);
         try {
             ShellRunner.run(command);
